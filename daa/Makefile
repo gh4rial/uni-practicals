@@ -1,10 +1,10 @@
-CXXFLAGS=-Wall -Wextra -Wconversion -Wsign-conversion -Weffc++ -pedantic -std=c++20
+CXXFLAGS=-Wall -Wextra -Wconversion -Wno-sign-conversion -Weffc++ -pedantic -std=c++20
 DEBUG_FLAGS=-g
 
 all: strassen sorts
 
 strassen: strassen.cpp
-	$(CXX) -o exe/strassen strassen.cpp $(CXXFLAGS) $(DEBUG_FLAGS)
+	$(CXX) -o exe/strassen matrixutils.cpp strassen.cpp $(CXXFLAGS) $(DEBUG_FLAGS)
 
 sorts: merge_sort insertion_sort heap_sort quick_sort count_sort selection_sort bubble_sort radix_sort
 
