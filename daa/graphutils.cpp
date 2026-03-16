@@ -62,12 +62,38 @@ Graph get_graph_from_user()
         }
     }
 
+    G.adj_matrix.rows = G.vertex_count;
+    G.adj_matrix.cols = G.vertex_count;
+    G.adj_matrix.data = new int[G.adj_matrix.rows*G.adj_matrix.cols];
+    G.adj_matrix.stride = G.adj_matrix.cols;
+
+    for (int i = 0; i < G.adj_matrix.rows*G.adj_matrix.cols; i++) {
+        G.adj_matrix.data[i] = 0;
+    }
+
     graph_update_adj_matrix(G);
-    
+
     return G;
 }
 
-void print_graph(Graph G)
+int graph_get_index_of_vertex(Graph G, char v)
 {
+    for (int i = 0; i < G.vertex_count; i++) {
+        if (G.vertices[i] == v) {
+            return i;
+        }
+    }
 
+    return -1;
+}
+
+void graph_update_adj_matrix(Graph G)
+{
+    for (int i = 0; i < G.edge_count; i++) {
+        int start_idx = graph_get_index_of_vertex(G, G.edges[i].start);
+        int end_idx = graph_get_index_of_vertex(G, G.edges[i].end);
+
+        G.adj_matrix.data[start_idx*G.adj_matrix.stride + end_idx]++;
+        G.adj_matrix.data[end_idx * G.adj_matrix.stride + start_idx]++;
+    }
 }

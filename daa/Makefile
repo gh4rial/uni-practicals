@@ -6,6 +6,9 @@ all: strassen sorts
 strassen: strassen.cpp
 	$(CXX) -o exe/strassen matrixutils.cpp strassen.cpp $(CXXFLAGS) $(DEBUG_FLAGS)
 
+test_sorts: test_sorts.cpp
+	$(CXX) -o exe/test_sorts sorts.cpp test_sorts.cpp $(CXXFLAGS) $(DEBUG_FLAGS)
+
 sorts: merge_sort insertion_sort heap_sort quick_sort count_sort selection_sort bubble_sort radix_sort
 
 count_sort: count_sort.cpp
