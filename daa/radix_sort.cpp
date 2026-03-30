@@ -1,7 +1,7 @@
 #include <cmath>
 #include <iostream>
 
-#include "arrayutils.h"
+#include "utils/arrayutils.hpp"
 
 // d - number of digits in each element of input
 void radix_sort(int A[], int size, int d, int *out)

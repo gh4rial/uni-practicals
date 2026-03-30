@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "arrayutils.h"
+#include "utils/arrayutils.hpp"
 
 #define HEAP_LEFT(i)   (((i)    << 1) + 1)
 #define HEAP_RIGHT(i)  (((i)    << 1) + 2)

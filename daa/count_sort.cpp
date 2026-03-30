@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "arrayutils.h"
+#include "utils/arrayutils.hpp"
 
 // 'out' should be a pointer to the first element of an array of atleast 'size' elements
 void count_sort(int A[], int size, int lim, int *out)

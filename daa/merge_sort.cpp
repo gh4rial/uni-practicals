@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "arrayutils.h"
+#include "utils/arrayutils.hpp"
 
 int comparisons = 0;
 

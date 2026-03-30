@@ -1,7 +1,7 @@
 #include <cstdlib>
 #include <iostream>
 
-#include "matrixutils.hpp"
+#include "utils/matrixutils.hpp"
 
 Matrix strassen_mult(Matrix A, Matrix B);
 

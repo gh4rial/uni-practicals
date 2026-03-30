@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cstdlib>
 
-#include "arrayutils.h"
+#include "arrayutils.hpp"
 
 int get_array_from_user(int A[], int max)
 {

@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "arrayutils.h"
+#include "utils/arrayutils.hpp"
 
 #define SWAP(a, b) (t=(a), (a)=(b), (b)=t)
 
