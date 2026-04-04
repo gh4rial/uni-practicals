@@ -26,8 +26,10 @@ struct Graph {
 };
 
 void  list_append(Node_List *list, int v, int weight);
+void  print_graph(Graph *G);
 Graph create_graph(int vertex_count, int edge_count);
 void  graph_add_edge(Graph *G, int start, int end);
 void  graph_add_weighted_edge(Graph *G, int start, int end, int weight);
+Graph read_graph_from_file(const char *fs);
 Graph get_graph_from_user();
 Graph get_weighted_graph_from_user();

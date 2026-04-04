@@ -7,5 +7,5 @@ struct Queue {
 };
 
 Queue queue_new(int A[], int size);
-void  enqueue(Queue *Q, int x);
-int   dequeue(Queue *Q);
+void  queue_enqueue(Queue *Q, int x);
+int   queue_dequeue(Queue *Q);

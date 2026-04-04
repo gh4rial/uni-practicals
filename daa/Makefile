@@ -10,7 +10,7 @@ prims: prims.cpp
 	$(CXX) -o exe/prims utils/graphutils.cpp prims.cpp $(CXXFLAGS) $(DEBUG_FLAGS)
 
 bfs: bfs.cpp
-	$(CXX) -o exe/bfs utils/graphutils.cpp bfs.cpp $(CXXFLAGS) $(DEBUG_FLAGS)
+	$(CXX) -o exe/bfs utils/queueutils.cpp utils/graphutils.cpp bfs.cpp $(CXXFLAGS) $(DEBUG_FLAGS)
 
 dfs: dfs.cpp
 	$(CXX) -o exe/dfs utils/graphutils.cpp dfs.cpp $(CXXFLAGS) $(DEBUG_FLAGS)

@@ -1,11 +1,53 @@
 #include <cstdlib>
+#include <fstream>
 #include <iostream>
 
 #include "graphutils.hpp"
 
+Graph read_graph_from_file(const char *fname)
+{
+    std::ifstream fs(fname);
+
+    int vertex_count, edge_count;
+
+    fs >> vertex_count;
+    if (vertex_count < 1) {
+        std::cout << "Error: Number of vertices must be positive\n";
+        std::exit(1);
+    }
+
+    fs >> edge_count;
+    if (edge_count < 0) {
+        std::cout << "Error: Number of edges must be positive\n";
+        std::exit(1);
+    }
+
+    Graph G = create_graph(vertex_count, edge_count);
+
+    for (int i = 0; i < edge_count; i++) {
+        int start, end;
+        fs >> start;
+        fs >> end;
+        graph_add_edge(&G, start, end);
+    }
+
+    return G;
+}
+
+void print_graph(Graph *G)
+{
+    std::cout << "Vertex count: " << G->vertex_count << '\n';
+    std::cout << "Edge count: " << G->edge_count << '\n';
+    std::cout << "Edges:\n";
+    for (int i = 0; i < G->edge_count; i++) {
+        std::cout << "[" << i << "]: ";
+        std::cout << G->edge_list[i].start << "-" << G->edge_list[i].end << '\n';
+    }
+}
+
 Graph create_graph(int vertex_count, int edge_count)
 {
-    Graph G;
+    Graph G{};
 
     G.vertex_count = vertex_count;
     G.edge_count = edge_count;
