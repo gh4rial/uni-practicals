@@ -59,6 +59,7 @@ int main()
 {
     Graph G = read_graph_from_file("test.txt");
 
+    print_graph(&G);
     dfs(&G);
 
     return 0;

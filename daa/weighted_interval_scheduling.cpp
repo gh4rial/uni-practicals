@@ -80,12 +80,12 @@ Job *read_weighted_jobs(int *out_job_count)
 int job_prev(int job_idx, Job *jobs)
 {
     for (int i = job_idx - 1; i >= 0; i--) {
-        if (jobs[i].finish_time <= jobs[job_idx].start_time) {
+        if (jobs[i].finish_time < jobs[job_idx].start_time) {
             return i;
         }
     }
 
-    return -1;
+    return result;
 }
 
 int compute_OPT_iter(Job *jobs, int job_count, int *memo_arr)
