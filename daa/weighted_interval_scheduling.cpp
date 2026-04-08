@@ -76,12 +76,21 @@ Job *read_weighted_jobs(int *out_job_count)
     return jobs;
 }
 
-// change to binary search
 int job_prev(int job_idx, Job *jobs)
 {
-    for (int i = job_idx - 1; i >= 0; i--) {
-        if (jobs[i].finish_time < jobs[job_idx].start_time) {
-            return i;
+    int low = 0;
+    int high = job_idx - 1;
+    int result = -1;
+    int start = jobs[job_idx].start_time;
+
+    while (low <= high) {
+        int mid = low + (high - low)/2;
+
+        if (jobs[mid].finish_time <= start) {
+            result = mid;
+            low = mid + 1;
+        } else {
+            high = mid - 1;
         }
     }
 
