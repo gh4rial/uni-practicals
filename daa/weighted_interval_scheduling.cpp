@@ -76,15 +76,29 @@ Job *read_weighted_jobs(int *out_job_count)
     return jobs;
 }
 
+// change to binary search
 int job_prev(int job_idx, Job *jobs)
 {
     for (int i = job_idx - 1; i >= 0; i--) {
-        if (jobs[i].finish_time < jobs[job_idx].start_time) {
+        if (jobs[i].finish_time <= jobs[job_idx].start_time) {
             return i;
         }
     }
 
     return -1;
+}
+
+int compute_OPT_iter(Job *jobs, int job_count, int *memo_arr)
+{
+    memo_arr[0] = jobs[0].weight;
+
+    for (int i = 1; i < job_count; i++) {
+        int prev_job = job_prev(i, jobs);
+        memo_arr[i] = (memo_arr[i-1] > (jobs[i].weight + memo_arr[prev_job]))
+            ? memo_arr[i-1] : (jobs[i].weight + memo_arr[prev_job]);
+    }
+
+    return memo_arr[job_count-1];
 }
 
 int compute_OPT(int job_idx, Job *jobs, int job_count, int *memo_arr)
@@ -93,7 +107,7 @@ int compute_OPT(int job_idx, Job *jobs, int job_count, int *memo_arr)
         return 0;
     }
 
-    if (memo_arr[job_idx]) {
+    if (memo_arr[job_idx] != -1) {
         return memo_arr[job_idx];
     }
 
@@ -117,10 +131,11 @@ int main()
     int *memo_arr = new int[job_count];
 
     for (int i = 0; i < job_count; i++) {
-        memo_arr[i] = 0;
+        memo_arr[i] = -1;
     }
 
-    int result = compute_OPT(job_count - 1, jobs, job_count, memo_arr);
+    //int result = compute_OPT(job_count - 1, jobs, job_count, memo_arr);
+    int result = compute_OPT_iter(jobs, job_count, memo_arr);
 
     std::cout << "Result: " << result << '\n';
 
