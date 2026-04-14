@@ -4,6 +4,37 @@
 
 #include "graphutils.hpp"
 
+Graph read_weighted_graph_from_file(const char *fname)
+{
+    std::ifstream fs(fname);
+
+    int vertex_count, edge_count;
+
+    fs >> vertex_count;
+    if (vertex_count < 1) {
+        std::cout << "Error: Number of vertices must be positive\n";
+        std::exit(1);
+    }
+
+    fs >> edge_count;
+    if (edge_count < 0) {
+        std::cout << "Error: Number of edges must be positive\n";
+        std::exit(1);
+    }
+
+    Graph G = create_graph(vertex_count, edge_count);
+
+    for (int i = 0; i < edge_count; i++) {
+        int start, end, weight;
+        fs >> start;
+        fs >> end;
+        fs >> weight;
+        graph_add_weighted_edge(&G, start, end, weight);
+    }
+
+    return G;
+}
+
 Graph read_graph_from_file(const char *fname)
 {
     std::ifstream fs(fname);
@@ -42,6 +73,17 @@ void print_graph(Graph *G)
     for (int i = 0; i < G->edge_count; i++) {
         std::cout << "[" << i << "]: ";
         std::cout << G->edge_list[i].start << "-" << G->edge_list[i].end << '\n';
+    }
+}
+
+void print_weighted_graph(Graph *G)
+{
+    std::cout << "Vertex count: " << G->vertex_count << '\n';
+    std::cout << "Edge count: " << G->edge_count << '\n';
+    std::cout << "Edges:\n";
+    for (int i = 0; i < G->edge_count; i++) {
+        std::cout << "[" << i << "]: ";
+        std::cout << G->edge_list[i].start << "-" << G->edge_list[i].end << ": " << G->edge_list[i].weight << '\n';
     }
 }
 
