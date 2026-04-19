@@ -1,7 +1,10 @@
 CXXFLAGS=-Wall -Wextra -Wconversion -Wno-sign-conversion -Weffc++ -pedantic -std=c++20
-DEBUG_FLAGS=-g
+DEBUG_FLAGS=-g -fsanitize=address,undefined
 
 all: strassen all_sorts test_sorts dfs bfs prims wis
+
+dijkstra: dijkstra.cpp
+	$(CXX) -o exe/dijkstra utils/graphutils.cpp dijkstra.cpp $(CXXFLAGS) $(DEBUG_FLAGS)
 
 wis: weighted_interval_scheduling.cpp
 	$(CXX) -o exe/wis weighted_interval_scheduling.cpp $(CXXFLAGS) $(DEBUG_FLAGS)

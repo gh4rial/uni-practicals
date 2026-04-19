@@ -19,6 +19,7 @@ Graph read_weighted_graph_from_file(const char *fname)
     fs >> edge_count;
     if (edge_count < 0) {
         std::cout << "Error: Number of edges must be positive\n";
+        std::cout << "Found edge count: " << edge_count << '\n';
         std::exit(1);
     }
 
@@ -95,7 +96,7 @@ Graph create_graph(int vertex_count, int edge_count)
     G.edge_count = edge_count;
     G.edge_index = 0;
 
-    G.edge_list = new Edge[G.vertex_count];
+    G.edge_list = new Edge[G.edge_count];
 
     G.adj_matrix = new int[G.vertex_count*G.vertex_count];
     for (int i = 0; i < G.vertex_count*G.vertex_count; i++) {
@@ -104,7 +105,7 @@ Graph create_graph(int vertex_count, int edge_count)
 
     G.adj_list = new Node_List[G.vertex_count];
     for (int i = 0; i < G.vertex_count; i++) {
-        G.adj_list[i].head = nullptr;  
+        G.adj_list[i].head = NULL;
     }
 
     return G;
