@@ -6,6 +6,9 @@ all: strassen all_sorts test_sorts dfs bfs prims wis
 dijkstra: dijkstra.cpp
 	$(CXX) -o exe/dijkstra utils/graphutils.cpp dijkstra.cpp $(CXXFLAGS) $(DEBUG_FLAGS)
 
+knapsack: 0-1_knapsack.cpp
+	$(CXX) -o exe/0-1_knapsack 0-1_knapsack.cpp $(CXXFLAGS)
+
 wis: weighted_interval_scheduling.cpp
 	$(CXX) -o exe/wis weighted_interval_scheduling.cpp $(CXXFLAGS) $(DEBUG_FLAGS)
 
